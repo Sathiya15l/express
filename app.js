@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var courseRouter = require('./routes/course');
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/course',courseRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -38,8 +40,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.set('port', process.env.PORT || 3000)
-
-app.listen(app.get('port'), () => {
-  console.log(`Express server listening on port ${app.get('port')}`);
-})
+module.exports = app;
